@@ -41,9 +41,10 @@ public class tickerPlusLabel {
         };
 
         tickers2 = new String[]{
-                "YNDX Yandex", "RDS-B Shell", "TSLA Tesla", "AAPL Appl", "GE General Electric", "AMD     Advanced Micro Devices", "CSCO",
-                "3420.T KFC", "GOOGL Google", "MCD     McDonalds", "DIS Disney", "MSFT     Microsoft", "NFLX Netflix", "NKE Nike",
-                "MA Master Card", "UA Under Armor", "V        Visa", "ADBE Adobe", "AMZN Amazon", "HP Hewlett-Packard", "PG Procter & Gamble", "U     Unity", "JNJ Jonson & Jonson"
+                "YNDX Yandex", "RDS-B Shell", "TSLA    Tesla", "AAPL     Appl", "GE      General Electric", "AMD     Advanced Micro Devices", "CSCO",
+                "3420.T      KFC", "GOOGL Google", "MCD     McDonalds", "DIS     Disney", "MSFT     Microsoft", "NFLX Netflix", "NKE         Nike",
+                "MA    Master Card", "UA         Under Armor", "V              Visa", "ADBE Adobe", "AMZN Amazon", "HP Hewlett-Packard", 
+                "PG      Procter & Gamble", "U            Unity", "JNJ Jonson & Jonson"
         };
 
         drawable = new int[]{
