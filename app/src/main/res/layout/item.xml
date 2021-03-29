@@ -51,8 +51,8 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/mark"
         android:layout_toEndOf="@+id/mark"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginStart="55dp"
         android:gravity="center">
     </TextView>
     <ImageView
@@ -62,22 +62,22 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/mark"
         android:layout_toEndOf="@+id/mark"
-        android:layout_marginLeft="42dip"
-        android:layout_marginStart="42dip"
+        android:layout_marginLeft="38dip"
+        android:layout_marginStart="38dip"
         android:gravity="center">
     </ImageView>
     <Button
         android:id="@+id/favorits"
-        android:layout_height="50dp"
-        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_width="100dp"
         android:textStyle="bold"
         android:onClick="onClick"
         android:textSize="13sp"
         android:layout_toEndOf="@+id/mark"
         android:layout_toRightOf="@+id/mark"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="115dp"
-        android:layout_marginStart="115dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
         android:gravity="center">
     </Button>
     <TextView
