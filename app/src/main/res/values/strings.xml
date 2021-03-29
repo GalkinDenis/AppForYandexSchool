@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StockBrowser</string>
+    <string name="explain">Enter the ticker id</string>
+    <string name="getSearch">Search a stock</string>
+    <string name="enterTicker">Enter a valid ticker</string>
+    <string name="addToFavorites">Add to favorites</string>
+    <string name="removeFromFavorites">Remove from favorites</string>
+    <string name="price">Price:</string>
+    <string name="changed">Сhanged per day:</string>
+    <string name="divident">Dividents per year:</string>
+    <string name="priceAtView">price: </string>
+</resources>
