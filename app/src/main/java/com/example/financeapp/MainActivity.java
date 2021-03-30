@@ -21,6 +21,7 @@ import yahoofinance.YahooFinance;
 /*
 Реализация проектного задания, школы мобильной разработки Яндекса,
 на основе библиотеки - "YahooFinanceAPI-3.15.0" , c кешированием избранного.
+Извиняюсь за использование устаревшего API, что то посовременнее не успел изучить)
  */
 
 public class MainActivity extends TabActivity {
