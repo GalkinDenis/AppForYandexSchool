@@ -19,6 +19,7 @@ import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
 /*
+Работа выполнялась в период с 27.03.2021 по 29.03.2021.
 Реализация проектного задания, школы мобильной разработки Яндекса,
 на основе библиотеки - "Quotes API for Yahoo Finance-3.15.0" 
 https://financequotes-api.com/, 
