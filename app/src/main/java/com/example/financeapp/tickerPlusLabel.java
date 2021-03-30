@@ -40,6 +40,7 @@ public class tickerPlusLabel {
                 "MA", "UA", "V", "ADBE", "AMZN", "HP", "PG", "U", "JNJ"
         };
 
+        //Небольшой костыль).
         tickers2 = new String[]{
                 "YNDX Yandex", "RDS-B Shell", "TSLA    Tesla", "AAPL     Appl", "GE      General Electric", "AMD     Advanced Micro Devices", "CSCO",
                 "3420.T      KFC", "GOOGL Google", "MCD     McDonalds", "DIS     Disney", "MSFT     Microsoft", "NFLX Netflix", "NKE         Nike",
