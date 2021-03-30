@@ -21,8 +21,8 @@ import yahoofinance.YahooFinance;
 /*
 Реализация проектного задания, школы мобильной разработки Яндекса,
 на основе библиотеки - "Quotes API for Yahoo Finance-3.15.0" 
-https://financequotes-api.com/
-, c кешированием избранного.
+https://financequotes-api.com/, 
+c кешированием избранного.
 Извиняюсь за использование устаревшего API, что то посовременнее не успел изучить)
  */
 
