@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,141 +25,148 @@ import yahoofinance.YahooFinance;
 //Активити найденной акции.
 public class findstock extends Activity {
 
-    LinearLayout linLayout;
-    LayoutInflater ltInflater;
-    View item;
     ImageView labelOfTicker;
-    TextView ticker;
-    TextView price;
-    TextView dividend;
-    TextView changing;
+    TextView showTicker;
+    TextView showIndex;
+    TextView showPrice;
+    TextView showDivident;
+    TextView showChanging;
     ImageView upOrDown;
     Button addToFavorites;
+    Button showHistory;
     Intent getIntent;
     String getExtra;
+    Animation animAlpha;
+    Boolean flag;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.find_stock_activity);
+        flag = true;
 
-        //Получение строки, содержащий имя тикера из searchStock.class
+        animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+
+        //Получение строки, содержащий имя тикера.
         getIntent = getIntent();
-        getExtra = getIntent.getStringExtra("enterTicker");
+        getExtra = getIntent.getStringExtra("enter");
         getExtra = getExtra.toUpperCase();
 
         //Создание потока под запрос на Yahoo finance, для получения акции.
         new Thread(){
             @Override
             public void run() {
-                Stock stock = null;
-                try {
 
-                    //Запрос
-                    stock = YahooFinance.get(getExtra);
+                //Запуск цикла, для переодического обновления показателей.
+                while (flag) {
+                    //Запрос.
+                    Stock stockFind = null;
+                    try {
+                        stockFind = YahooFinance.get(getExtra);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //Возврат цены
-                BigDecimal price3 = stock.getQuote().getPrice();
-
-                //Возврат изменения за сутки
-                BigDecimal change = stock.getQuote().getChange();
-
-                //Возврат дивидендов в год
-                BigDecimal dividends = stock.getDividend().getAnnualYieldPercent();
-
-                //Возвращение к UI потоку для взаимодействия с имеющимися View.
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        linLayout = (LinearLayout) findViewById(R.id.linLayout);
-                        ltInflater = getLayoutInflater();
-                        item = ltInflater.inflate(R.layout.find_stock_activity, linLayout, false);
-
-                        for (int i = 0; i < tickerPlusLabel.tickers.length; i++) {
-                            tickerPlusLabel.stockStack.put(tickerPlusLabel.tickers[i], tickerPlusLabel.drawable[i]);
-                        }
-
-                        labelOfTicker = (ImageView) item.findViewById(R.id.imageTesla);
-                        if(tickerPlusLabel.stockStack.get(getExtra) != null) {
-                            labelOfTicker.setImageResource(tickerPlusLabel.stockStack.get(getExtra));
-                        }else{
-                            labelOfTicker.setImageResource(R.drawable.clear);
-                        }
-
-                        ticker = (TextView) item.findViewById(R.id.ticker);
-                        ticker.setText(getExtra);
-
-                        price = (TextView) item.findViewById(R.id.showPrice);
-                        price.setText(String.valueOf(price3));
-
-                        dividend = (TextView) item.findViewById(R.id.showDivident);
-                        if(dividends != null) {
-                            dividend.setText(String.valueOf(dividends));
-                        }else{
-                            dividend.setText("-");
-                        }
-
-                        changing = (TextView) item.findViewById(R.id.showChange);
-                        changing.setText(String.valueOf(change));
-
-                        //Вывод зеленой\красной стрелки, в зависимости от знака перед значением.
-                        upOrDown = (ImageView) item.findViewById(R.id.upDown);
-                        double converter = Double.parseDouble(String.valueOf(change));
-                        if (converter > 0) {
-                            upOrDown.setScaleY(1);
-                            upOrDown.setScaleX(1);
-                            upOrDown.setImageResource(R.drawable.gr);
-                        } else {
-                            upOrDown.setScaleY(1);
-                            upOrDown.setScaleX(1);
-                            upOrDown.setImageResource(R.drawable.r);
-                        }
-
-                        addToFavorites = (Button) item.findViewById(R.id.getSearch);
-                        addToFavorites.setText(R.string.addToFavorites);
-                        addToFavorites.setTag(getExtra);
-
-                        linLayout.addView(item);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
-            }
-        }.start();
-    }
 
-    public void onClick(View v){
+                    //Возврат цены.
+                    BigDecimal price = null;
+                    try {
+                        price = stockFind.getQuote(true).getPrice();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-        //Добавление в избранное.
-        new Thread(){
-            @Override
-            public void run() {
-                Stock stock = null;
-                try {
-                    stock = YahooFinance.get((String) v.getTag());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    //Возврат изменения за сутки.
+                    BigDecimal change = null;
+                    try {
+                        change = stockFind.getQuote(true).getChangeInPercent();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                BigDecimal price3 = stock.getQuote().getPrice();
-                BigDecimal change = stock.getQuote().getChange();
-                BigDecimal dividends = stock.getDividend().getAnnualYieldPercent();
+                    //Получение изменения за сутки.
+                    BigDecimal changeIndex = null;
+                    try {
+                        changeIndex = stockFind.getQuote(true).getChange();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
+                    //Возврат дивидендов в год.
+                    BigDecimal dividends = null;
+                    try {
+                        dividends = stockFind.getDividend(true).getAnnualYieldPercent();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                Stock finalStock = stock;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Добавление в кеш.
-                        if(!tickerPlusLabel.tickerList.contains((String) v.getTag())){
-                            tickerPlusLabel.tickerList.add((String) v.getTag());
-                            tickerPlusLabel.priceList.add(String.valueOf((price3)));
-                            tickerPlusLabel.changeList.add(String.valueOf((change)));
-                            tickerPlusLabel.dividentList.add(String.valueOf((dividends)));
+                    //Возвращение к UI потоку для взаимодействия с имеющимися View.
+                    BigDecimal finalPrice = price;
+                    BigDecimal finalChange = change;
+                    BigDecimal finalChangeIndex = changeIndex;
+                    BigDecimal finalDividents = dividends;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            labelOfTicker = (ImageView) findViewById(R.id.imageTesla);
+
+                            //Вставить заглушку в виде стандартной картинки, если подходящая не найдена.
+                            if (tickerPlusLabel.stockStack.get(getExtra) != null) {
+                                labelOfTicker.setImageResource(tickerPlusLabel.stockStack.get(getExtra));
+                            } else {
+                                labelOfTicker.setImageResource(R.drawable.clear);
+                            }
+
+                            showTicker = (TextView) findViewById(R.id.ticker);
+                            showTicker.setText(getExtra);
+
+                            showPrice = (TextView) findViewById(R.id.showPrice);
+                            showPrice.setText("$ " + String.valueOf(finalPrice));
+
+                            showDivident = (TextView) findViewById(R.id.showDivident);
+                            if (finalDividents != null) {
+                                showDivident.setText(String.valueOf(finalDividents) + "%");
+                            } else {
+                                showDivident.setText("-");
+                            }
+
+                            showIndex = (TextView) findViewById(R.id.indexFind);
+                            showIndex.setText(String.valueOf(finalChangeIndex));
+
+                            showChanging = (TextView) findViewById(R.id.showChange);
+                            showChanging.setText("(" + String.valueOf(finalChange) + "%)");
+
+                            //Вывод зеленой\красной стрелки, в зависимости от знака перед значением.
+                            upOrDown = (ImageView) findViewById(R.id.upDown);
+                            double converter = Double.parseDouble(String.valueOf(finalChange));
+                            if (converter > 0) {
+                                upOrDown.setScaleY(1);
+                                upOrDown.setScaleX(1);
+                                upOrDown.setImageResource(R.drawable.gr);
+                            } else {
+                                upOrDown.setScaleY(1);
+                                upOrDown.setScaleX(1);
+                                upOrDown.setImageResource(R.drawable.r);
+                            }
+
+                            //Кнопка добавления в избранное.
+                            addToFavorites = (Button) findViewById(R.id.getSearch);
+                            addToFavorites.setText(R.string.addToFavorites);
+                            addToFavorites.setTag(getExtra);
+
+                            //Выовод исторических данных.
+                            showHistory = (Button) findViewById(R.id.showHistory);
+                            showHistory.setText(R.string.showHistory);
+                            showHistory.setTag(getExtra);
                         }
-                    };
-                });
+                    });
+
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }.start();
     }
@@ -165,17 +174,82 @@ public class findstock extends Activity {
     @Override
     protected void onPause(){
         super.onPause();
-        //Сохранение избранного.
-        saveText();
+        //Завершение обновления данных по акции.
+        flag = false;
     }
 
-    //Функция сохранение избранного.
-    public void saveText() {
-        for(int i = 0; i < tickerPlusLabel.tickersForFavorites.size(); i++) {
-            SharedPreferences sPref = getPreferences(MODE_PRIVATE);
-            SharedPreferences.Editor ed = sPref.edit();
-            ed.putString(String.valueOf(i), tickerPlusLabel.tickersForFavorites.get(i));
-            ed.apply();
-        }
+    public void onClickAddToFavorites(View v){
+        v.startAnimation(animAlpha);
+
+        //Добавление в избранное.
+        new Thread(){
+            @Override
+            public void run() {
+                Stock stockFind2 = null;
+                try {
+                    stockFind2 = YahooFinance.get((String) v.getTag());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                BigDecimal price2 = null;
+                try {
+                    price2 = stockFind2.getQuote(true).getPrice();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                BigDecimal change2 = null;
+                try {
+                    change2 = stockFind2.getQuote(true).getChangeInPercent();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //Получение изменения за сутки.
+                BigDecimal changeIndex2 = null;
+                try {
+                    changeIndex2 = stockFind2.getQuote(true).getChange();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                BigDecimal dividends = null;
+                try {
+                    dividends = stockFind2.getDividend(true).getAnnualYieldPercent();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                BigDecimal finalPrice2 = price2;
+                BigDecimal finalChange2 = change2;
+                BigDecimal finalChangeIndex2 = changeIndex2;
+                BigDecimal finalDividends2 = dividends;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        //Добавление в кеш.
+                        if(!tickerPlusLabel.tickerList.contains((String) v.getTag())){
+
+                            tickerPlusLabel.tickerList.add((String) v.getTag());
+                            tickerPlusLabel.priceList.add(String.valueOf((finalPrice2)));
+                            tickerPlusLabel.changeList.add(String.valueOf((finalChange2)));
+                            tickerPlusLabel.changeIndexList.add(String.valueOf((finalChangeIndex2)));
+                            tickerPlusLabel.dividentList.add(String.valueOf((finalDividends2)));
+                        }
+
+                    };
+                });
+            }
+        }.start();
+    }
+
+    public void onClickShowHistory(View v){
+        v.startAnimation(animAlpha);
+
+        Intent intentFindStock = new Intent("historyList");
+        intentFindStock.putExtra("getHistory", (String) v.getTag());
+        startActivity(intentFindStock);
     }
 }
