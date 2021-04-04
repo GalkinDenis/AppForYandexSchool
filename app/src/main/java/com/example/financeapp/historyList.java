@@ -24,6 +24,7 @@ import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
 
+//Активити просмотра иисторических данных по выбранной акции.
 public class historyList extends Activity {
 
     View item;
@@ -72,6 +73,7 @@ public class historyList extends Activity {
                 }
 
 
+                //Список под хранение исторических данных.
                 List<HistoricalQuote> history = null;
                 try {
                     assert stock != null;
@@ -127,6 +129,7 @@ public class historyList extends Activity {
         }.start();
     }
 
+    //Форматирование объекта типа Calendar.
     private String convertDate(Calendar cal){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-ddd");
         return format.format(cal.getTime());
