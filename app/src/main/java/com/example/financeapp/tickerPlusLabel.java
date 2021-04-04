@@ -12,17 +12,23 @@ public class tickerPlusLabel {
     public static ArrayList<String> tickerList;
     public static ArrayList<String> priceList;
     public static ArrayList<String> changeList;
+    public static ArrayList<String> changeIndexList;
     public static ArrayList<String> dividentList;
     public static Map<String, Integer> stockStack;
+    public static Map<String, String> stockNameStack;
     public static ArrayList<String> tickersForFavorites;
     public static String[] tickers;
-    public static String[] tickers2;
+    public static String[] nameOfCompany;
     public static int[] drawable;
 
-    public static void initOfArrays() {
+    public static void initializationOfArrays() {
         //Массив для храненя связки - "тикер + эмблема",
         // для более удобного формирования списка избранного.
         stockStack = new HashMap<String, Integer>();
+
+        //Массив для храненя связки - "тикер + имя".
+        stockNameStack = new HashMap<String, String>();
+
 
         //Массив для хранения перечня избранных тикеров.
         tickersForFavorites = new ArrayList<>();
@@ -31,8 +37,9 @@ public class tickerPlusLabel {
         tickerList = new ArrayList<>();
         priceList = new ArrayList<>();
         changeList = new ArrayList<>();
+        changeIndexList = new ArrayList<>();
         dividentList = new ArrayList<>();
-        //                                 }
+        //////////////////////////////////// }
 
         tickers = new String[]{
                 "YNDX", "RDS-B", "TSLA", "AAPL", "GE", "AMD", "CSCO",
@@ -40,12 +47,12 @@ public class tickerPlusLabel {
                 "MA", "UA", "V", "ADBE", "AMZN", "HP", "PG", "U", "JNJ"
         };
 
-        //Небольшой костыль).
-        tickers2 = new String[]{
-                "YNDX Yandex", "RDS-B Shell", "TSLA    Tesla", "AAPL     Appl", "GE      General Electric", "AMD     Advanced Micro Devices", "CSCO",
-                "3420.T      KFC", "GOOGL Google", "MCD     McDonalds", "DIS     Disney", "MSFT     Microsoft", "NFLX Netflix", "NKE         Nike",
-                "MA    Master Card", "UA         Under Armor", "V              Visa", "ADBE Adobe", "AMZN Amazon", "HP Hewlett-Packard", 
-                "PG      Procter & Gamble", "U            Unity", "JNJ Jonson & Jonson"
+        nameOfCompany = new String[]{
+                "Yandex", "Shell", "Tesla", "Appl", "General Electric",
+                "Advanced Micro Devices", "CSCO", "KFC", "Google", "McDonalds",
+                "Disney", "Microsoft", "Netflix", "Nike", "Master Card",
+                "Under Armor", "Visa", "Adobe", "Amazon", "Hewlett-Packard",
+                "Procter & Gamble", "Unity", "Jonson & Jonson"
         };
 
         drawable = new int[]{
@@ -60,6 +67,11 @@ public class tickerPlusLabel {
         for (int i = 0; i < tickers.length; i++) {
             stockStack.put(tickers[i], drawable[i]);
         }
+
+        //Формирование связки - "тикер + имя".
+        for (int i = 0; i < tickers.length; i++) {
+            stockNameStack.put(tickers[i], nameOfCompany[i]);
+        }
     }
 
     //Функция подбора соответствующей эмблемы компании.
@@ -72,5 +84,4 @@ public class tickerPlusLabel {
     }
 
 }
-
 
