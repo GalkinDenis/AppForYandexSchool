@@ -131,7 +131,7 @@ public class historyList extends Activity {
 
     //Форматирование объекта типа Calendar.
     private String convertDate(Calendar cal){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-ddd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(cal.getTime());
     }
 }
