@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
+    android:id="@+id/l"
+    android:background="@drawable/buttonshape"
+    >
+
+
+    <TextView
+        android:id="@+id/symbolPrice"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="TICKER OF COMPANY:"
+        android:gravity="center"
+        android:textColor="#47A891"
+        app:layout_constraintTop_toTopOf="@+id/MARK"
+        app:layout_constraintBottom_toBottomOf="@+id/MARK"
+        app:layout_constraintRight_toLeftOf="@+id/MARK"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginEnd="150dp">
+    </TextView>
+    <TextView
+        android:id="@+id/showSymbolPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/symbolPrice"
+        app:layout_constraintRight_toRightOf="@+id/symbolPrice"
+        app:layout_constraintLeft_toLeftOf="@+id/symbolPrice"
+        >
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/datePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="DATE:"
+        android:gravity="center"
+        android:textColor="#47A891"
+        app:layout_constraintTop_toTopOf="@+id/MARK"
+        app:layout_constraintBottom_toBottomOf="@+id/MARK"
+        app:layout_constraintRight_toLeftOf="@+id/MARK"
+        app:layout_constraintLeft_toLeftOf="@+id/symbolPrice"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp">
+    </TextView>
+    <TextView
+        android:id="@+id/showDatePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/datePrice"
+        app:layout_constraintLeft_toLeftOf="@+id/datePrice"
+        app:layout_constraintRight_toRightOf="@+id/datePrice"
+        >
+    </TextView>
+
+
+
+    <TextView
+        android:id="@+id/MARK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+       >
+    </TextView>
+
+
+    <TextView
+        android:id="@+id/highPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="HIGH PRICE:"
+        android:gravity="center"
+        android:textColor="#47A891"
+        app:layout_constraintTop_toTopOf="@+id/MARK"
+        app:layout_constraintBottom_toBottomOf="@+id/MARK"
+        app:layout_constraintRight_toLeftOf="@+id/MARK"
+        app:layout_constraintLeft_toLeftOf="@+id/symbolPrice"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp">
+    </TextView>
+    <TextView
+        android:id="@+id/showHighPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/highPrice"
+        app:layout_constraintLeft_toLeftOf="@+id/highPrice"
+        app:layout_constraintRight_toRightOf="@+id/highPrice"
+        >
+    </TextView>
+
+
+
+
+    <TextView
+        android:id="@+id/lowPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="LOW PRICE:"
+        android:gravity="center"
+        android:textColor="#47A891"
+        app:layout_constraintTop_toTopOf="@+id/MARK"
+        app:layout_constraintBottom_toBottomOf="@+id/MARK"
+        app:layout_constraintLeft_toRightOf="@+id/MARK"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp">
+    </TextView>
+    <TextView
+        android:id="@+id/showLowPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/lowPrice"
+        app:layout_constraintLeft_toLeftOf="@+id/lowPrice"
+        app:layout_constraintRight_toRightOf="@+id/lowPrice"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/closePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="CLOSE PRICE:"
+        android:gravity="center"
+        android:textColor="#47A891"
+        app:layout_constraintTop_toTopOf="@+id/MARK"
+        app:layout_constraintBottom_toBottomOf="@+id/MARK"
+        app:layout_constraintLeft_toRightOf="@+id/MARK"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp">
+    </TextView>
+    <TextView
+        android:id="@+id/showClosePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/closePrice"
+        app:layout_constraintLeft_toLeftOf="@+id/closePrice"
+        app:layout_constraintRight_toRightOf="@+id/closePrice"
+        >
+    </TextView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
