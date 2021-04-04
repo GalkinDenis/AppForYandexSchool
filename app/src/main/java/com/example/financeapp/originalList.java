@@ -64,28 +64,16 @@ public class originalList extends Activity {
                     }
 
                     //Получение цены.
-                    BigDecimal price = null;
-                    try {
-                        price = stock.getQuote(true).getPrice();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal price;
+                    price = stock.getQuote().getPrice();
 
                     //Получение изменения за сутки.
-                    BigDecimal change = null;
-                    try {
-                        change = stock.getQuote(true).getChangeInPercent();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal change;
+                    change = stock.getQuote().getChangeInPercent();
 
                     //Получение изменения за сутки.
-                    BigDecimal changeIndex = null;
-                    try {
-                        changeIndex = stock.getQuote(true).getChange();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal changeIndex;
+                    changeIndex = stock.getQuote().getChange();
 
                     //Возвращение к UI потоку для взаимодействия с имеющимися View.
                     int I = i;
@@ -174,33 +162,17 @@ public class originalList extends Activity {
                     e.printStackTrace();
                 }
 
-                BigDecimal price2 = null;
-                try {
-                    price2 = stock2.getQuote(true).getPrice();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal price2;
+                price2 = stock2.getQuote().getPrice();
 
-                BigDecimal change2 = null;
-                try {
-                    change2 = stock2.getQuote(true).getChangeInPercent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal change2;
+                change2 = stock2.getQuote().getChangeInPercent();
 
-                BigDecimal dividends2 = null;
-                try {
-                    dividends2 = stock2.getDividend(true).getAnnualYieldPercent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal dividends2;
+                dividends2 = stock2.getDividend().getAnnualYieldPercent();
 
-                BigDecimal changeIndex2 = null;
-                try {
-                    changeIndex2 = stock2.getQuote(true).getChange();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal changeIndex2;
+                changeIndex2 = stock2.getQuote().getChange();
 
                 BigDecimal finalPrice2 = price2;
                 BigDecimal finalChange2 = change2;
