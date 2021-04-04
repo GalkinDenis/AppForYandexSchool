@@ -70,7 +70,6 @@ public class showDetailsFromCache extends Activity {
 
         dividend = (TextView) findViewById(R.id.showDivident);
         dividend.setText(getExtraDivident + "%");
-        //dividend.setText("-");
 
         changingIndex = (TextView) findViewById(R.id.showIndexFind);
         changingIndex.setText(getExtraChangeIndex);
@@ -126,36 +125,20 @@ public class showDetailsFromCache extends Activity {
                     }
 
                     //Возврат цены.
-                    BigDecimal price = null;
-                    try {
-                        price = stockFind.getQuote(true).getPrice();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal price;
+                    price = stockFind.getQuote().getPrice();
 
                     //Возврат изменения за сутки.
-                    BigDecimal change = null;
-                    try {
-                        change = stockFind.getQuote(true).getChangeInPercent();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal change;
+                    change = stockFind.getQuote().getChangeInPercent();
 
                     //Получение изменения за сутки.
-                    BigDecimal changeIndex = null;
-                    try {
-                        changeIndex = stockFind.getQuote(true).getChange();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal changeIndex;
+                    changeIndex = stockFind.getQuote().getChange();
 
                     //Возврат дивидендов в год.
-                    BigDecimal dividends = null;
-                    try {
-                        dividends = stockFind.getDividend(true).getAnnualYieldPercent();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal dividends;
+                    dividends = stockFind.getDividend().getAnnualYieldPercent();
 
                     //Возвращение к UI потоку для взаимодействия с имеющимися View.
                     BigDecimal finalPrice = price;
