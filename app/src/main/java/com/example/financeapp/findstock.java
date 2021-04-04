@@ -68,36 +68,20 @@ public class findstock extends Activity {
                     }
 
                     //Возврат цены.
-                    BigDecimal price = null;
-                    try {
-                        price = stockFind.getQuote(true).getPrice();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal price;
+                    price = stockFind.getQuote().getPrice();
 
                     //Возврат изменения за сутки.
-                    BigDecimal change = null;
-                    try {
-                        change = stockFind.getQuote(true).getChangeInPercent();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal change;
+                    change = stockFind.getQuote().getChangeInPercent();
 
                     //Получение изменения за сутки.
-                    BigDecimal changeIndex = null;
-                    try {
-                        changeIndex = stockFind.getQuote(true).getChange();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal changeIndex;
+                    changeIndex = stockFind.getQuote().getChange();
 
                     //Возврат дивидендов в год.
-                    BigDecimal dividends = null;
-                    try {
-                        dividends = stockFind.getDividend(true).getAnnualYieldPercent();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    BigDecimal dividends;
+                    dividends = stockFind.getDividend().getAnnualYieldPercent();
 
                     //Возвращение к UI потоку для взаимодействия с имеющимися View.
                     BigDecimal finalPrice = price;
@@ -192,34 +176,18 @@ public class findstock extends Activity {
                     e.printStackTrace();
                 }
 
-                BigDecimal price2 = null;
-                try {
-                    price2 = stockFind2.getQuote(true).getPrice();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal price2;
+                price2 = stockFind2.getQuote().getPrice();
 
-                BigDecimal change2 = null;
-                try {
-                    change2 = stockFind2.getQuote(true).getChangeInPercent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal change2;
+                change2 = stockFind2.getQuote().getChangeInPercent();
 
                 //Получение изменения за сутки.
-                BigDecimal changeIndex2 = null;
-                try {
-                    changeIndex2 = stockFind2.getQuote(true).getChange();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal changeIndex2;
+                changeIndex2 = stockFind2.getQuote().getChange();
 
-                BigDecimal dividends = null;
-                try {
-                    dividends = stockFind2.getDividend(true).getAnnualYieldPercent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                BigDecimal dividends;
+                dividends = stockFind2.getDividend().getAnnualYieldPercent();
 
                 BigDecimal finalPrice2 = price2;
                 BigDecimal finalChange2 = change2;
