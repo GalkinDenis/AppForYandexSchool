@@ -46,12 +46,8 @@ public class originalList extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-    }
-        @Override
-        protected void onResume() {
-            super.onResume();
 
-            animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
         //Создание потока под запрос на Yahoo finance, для получения акции.
         new Thread(){
@@ -153,14 +149,6 @@ public class originalList extends Activity {
         }.start();
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        if(linLayout != null) {
-            //Обнуление списка.
-            linLayout.removeAllViews();
-        }
-    }
 
     //Вывод активити с деталями найденной акции.
     public void onClickShowDetails(View v){
