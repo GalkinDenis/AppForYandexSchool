@@ -236,7 +236,11 @@ public class findstock extends Activity {
                             tickerPlusLabel.priceList.add(String.valueOf((finalPrice2)));
                             tickerPlusLabel.changeList.add(String.valueOf((finalChange2)));
                             tickerPlusLabel.changeIndexList.add(String.valueOf((finalChangeIndex2)));
-                            tickerPlusLabel.dividentList.add(String.valueOf((finalDividends2)));
+                            if(finalDividends2 == null) {
+                                tickerPlusLabel.dividentList.add("-");
+                            }else{
+                                tickerPlusLabel.dividentList.add(String.valueOf((finalDividends2)));
+                            }
                         }
 
                     };
